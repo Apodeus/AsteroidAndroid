@@ -22,7 +22,7 @@ public class Shot {
     public void display(Canvas c){
         Paint p = new Paint();
         p.setARGB(255, 255, 255, 255);
-        p.setStrokeWidth(3);
+        p.setStrokeWidth(5);
 
         c.drawPoint(pos.getX(), pos.getY(), p);
     }

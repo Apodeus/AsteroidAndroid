@@ -19,10 +19,8 @@ public class Ship {
     private int len;            //Length of the ship
     private boolean isMoving;
     private ArrayList<Shot> shots;
-    private int borderWidth;
-    private int borderHeight;
 
-    public Ship(int x, int y, int len, int bw, int bh){
+    public Ship(int x, int y, int len){
         pos = new CVector2D(x, y);
         velocity = new CVector2D();
         shape = new float[]{
@@ -33,8 +31,6 @@ public class Ship {
         this.len = len;
         angle = 0;
         rotation = 0;
-        borderHeight = bh;
-        borderWidth = bw;
         shots = new ArrayList<>();
     }
 
@@ -80,7 +76,7 @@ public class Ship {
         ArrayList<Shot> tmp = new ArrayList<>();
         for(Shot s : shots){
             s.update();
-            if(s.isOutEdges(borderWidth, borderHeight)){
+            if(s.isOutEdges(CImageView.WIDTH_SCREEN, CImageView.HEIGH_SCREEN)){
                 tmp.add(s);
             }
         }
@@ -88,17 +84,17 @@ public class Ship {
     }
 
     private void edges(){
-        if(pos.getX() >= borderWidth){
+        if(pos.getX() >= CImageView.WIDTH_SCREEN){
             pos.setX(0);
         }
-        if(pos.getY() >= borderHeight){
+        if(pos.getY() >= CImageView.HEIGH_SCREEN){
             pos.setY(0);
         }
         if(pos.getX() < 0){
-            pos.setX(borderWidth);
+            pos.setX(CImageView.WIDTH_SCREEN);
         }
         if(pos.getY() < 0){
-            pos.setY(borderHeight);
+            pos.setY(CImageView.HEIGH_SCREEN);
         }
     }
 
