@@ -4,7 +4,6 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.util.AttributeSet;
 import android.view.View;
-import android.widget.Button;
 
 /**
  * Created by Romain on 11/06/2017.
@@ -21,8 +20,11 @@ public class CImageView extends View {
     public CImageView(Context context, AttributeSet attrs) {
         super(context, attrs);
 
-        System.out.println("mw/mh : " + MainActivity.WIDTH_SCREEN + ";" + MainActivity.HEIGHT_SCREEN);
-        myShip = new Ship(MainActivity.WIDTH_SCREEN / 2, MainActivity.HEIGHT_SCREEN / 2, 25);
+        int width= context.getResources().getDisplayMetrics().widthPixels;
+        int height= context.getResources().getDisplayMetrics().heightPixels;
+
+        System.out.println("mw/mh : " + width + ";" + height);
+        myShip = new Ship(width / 2, height / 2, 25, width, height);
 
     }
 
@@ -33,6 +35,12 @@ public class CImageView extends View {
 
         invalidate();
     }
+    /*
+    @Override
+    public void onWindowFocusChanged(boolean hasFocus){
+        width=this.getWidth();
+        height=this.getHeight();
+    }*/
 
     public Ship getShip(){
         return myShip;

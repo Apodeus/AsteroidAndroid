@@ -32,9 +32,9 @@ public class Shot {
     }
 
     //return true if the point is out of the screen
-    public boolean isOutEdges(){
+    public boolean isOutEdges(int bw, int bh){
         int x = pos.getX();
         int y = pos.getY();
-        return x >= MainActivity.WIDTH_SCREEN || x < 0 || y >= MainActivity.HEIGHT_SCREEN || y < 0;
+        return x >= bw || x < 0 || y >= bh || y < 0;
     }
 }
