@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_main"
     android:screenOrientation="landscape"
+    android:theme="@android:style/Theme.Holo.NoActionBar"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="apoco.sandbox.MainActivity">
@@ -18,33 +19,35 @@
         android:id="@+id/button_rota_right"
         android:layout_height="wrap_content"
         android:layout_width="wrap_content"
-        android:layout_marginBottom="40dp"
-        android:layout_marginEnd="29dp"
+        android:layout_marginBottom="94dp"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true" />
-
-    <Button
-        android:id="@+id/button_rota_left"
-        android:layout_height="wrap_content"
-        android:layout_width="wrap_content"
-        android:layout_alignBaseline="@+id/button_rota_right"
-        android:layout_alignBottom="@+id/button_rota_right"
-        android:layout_alignParentStart="true"
-        android:layout_marginStart="28dp" />
+        android:layout_alignStart="@+id/button_rota_left" />
 
     <Button
         android:id="@+id/button_fire"
         android:layout_height="wrap_content"
         android:layout_width="wrap_content"
-        android:layout_above="@+id/button_rota_right"
-        android:layout_alignStart="@+id/button_rota_left" />
+        android:layout_marginEnd="32dp"
+        android:layout_alignTop="@+id/button_rota_right"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="46dp" />
+
+    <Button
+        android:id="@+id/button_rota_left"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_alignBaseline="@+id/button_fire"
+        android:layout_alignBottom="@+id/button_fire"
+        android:layout_alignParentStart="true" />
 
     <Button
         android:id="@+id/button_forward"
         android:layout_height="wrap_content"
         android:layout_width="wrap_content"
-        android:layout_above="@+id/button_rota_right"
-        android:layout_alignStart="@+id/button_rota_right" />
+        android:layout_alignBaseline="@+id/button_rota_right"
+        android:layout_alignBottom="@+id/button_rota_right"
+        android:layout_alignStart="@+id/button_fire" />
 
 </RelativeLayout>
 

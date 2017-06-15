@@ -31,4 +31,33 @@ public class CVector2D {
         this.x *= scal;
         this.y *= scal;
     }
+
+    public CVector2D rotate(CVector2D v, double a){
+        double x1 = v.getX() - this.getX();
+        double y1 = v.getY() - this.getY();
+
+        double x2 = x1 * Math.cos(a) - y1 * Math.sin(a);
+        double y2 = x1 * Math.sin(a) + y1 * Math.cos(a);
+
+        return new CVector2D((int)(x2 + v.getX()), (int)(y2 + v.getY()));
+    }
+
+    public CVector2D copy(){
+        return new CVector2D(this.x, this.y);
+    }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

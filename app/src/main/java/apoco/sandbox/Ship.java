@@ -1,6 +1,5 @@
 package apoco.sandbox;
 
-
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import java.util.ArrayList;
@@ -76,7 +75,7 @@ public class Ship {
         ArrayList<Shot> tmp = new ArrayList<>();
         for(Shot s : shots){
             s.update();
-            if(s.isOutEdges(CImageView.WIDTH_SCREEN, CImageView.HEIGH_SCREEN)){
+            if(s.isOutEdges(CImageView.WIDTH_SCREEN, CImageView.HEIGHT_SCREEN)){
                 tmp.add(s);
             }
         }
@@ -87,14 +86,14 @@ public class Ship {
         if(pos.getX() >= CImageView.WIDTH_SCREEN){
             pos.setX(0);
         }
-        if(pos.getY() >= CImageView.HEIGH_SCREEN){
+        if(pos.getY() >= CImageView.HEIGHT_SCREEN){
             pos.setY(0);
         }
         if(pos.getX() < 0){
             pos.setX(CImageView.WIDTH_SCREEN);
         }
         if(pos.getY() < 0){
-            pos.setY(CImageView.HEIGH_SCREEN);
+            pos.setY(CImageView.HEIGHT_SCREEN);
         }
     }
 
@@ -126,5 +125,15 @@ public class Ship {
     public void fire(){
         shots.add(new Shot(pos.getX(), pos.getY(), this.angle));
     }
+
+    public CVector2D getPos(){
+        return pos;
+    }
+
+    public int getLen(){
+        return len;
+    }
+
+    public ArrayList<Shot> getShots() { return shots;}
 }
 

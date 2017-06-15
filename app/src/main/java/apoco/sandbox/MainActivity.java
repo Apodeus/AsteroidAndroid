@@ -6,6 +6,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity {
@@ -15,7 +17,12 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
         setContentView(R.layout.activity_main);
+
         //Put the orientation of the screen on landscape mode, and background color in Black
         getWindow().getDecorView().setBackgroundColor(Color.BLACK);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
@@ -27,9 +34,9 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 if(event.getAction() == MotionEvent.ACTION_DOWN) {
-                    civ.getShip().addAngle(0.1f);
+                    civ.getGame().getShip().addAngle(0.1f);
                 } else if (event.getAction() == MotionEvent.ACTION_UP) {
-                    civ.getShip().addAngle(0);
+                    civ.getGame().getShip().addAngle(0);
                 }
                 return true;
             }
@@ -40,9 +47,9 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 if(event.getAction() == MotionEvent.ACTION_DOWN) {
-                    civ.getShip().addAngle(-0.1f);
+                    civ.getGame().getShip().addAngle(-0.1f);
                 } else if (event.getAction() == MotionEvent.ACTION_UP) {
-                    civ.getShip().addAngle(0);
+                    civ.getGame().getShip().addAngle(0);
                 }
                 return true;
             }
@@ -53,9 +60,9 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 if(event.getAction() == MotionEvent.ACTION_DOWN) {
-                    civ.getShip().setMoving(true);
+                    civ.getGame().getShip().setMoving(true);
                 } else if (event.getAction() == MotionEvent.ACTION_UP) {
-                    civ.getShip().setMoving(false);
+                    civ.getGame().getShip().setMoving(false);
                 }
                 return true;
             }
@@ -66,7 +73,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 if(event.getAction() == MotionEvent.ACTION_DOWN) {
-                    civ.getShip().fire();
+                    civ.getGame().getShip().fire();
                 }
                 return true;
             }

@@ -37,4 +37,8 @@ public class Shot {
         int y = pos.getY();
         return x >= bw || x < 0 || y >= bh || y < 0;
     }
+
+    public CVector2D getPos(){
+        return pos;
+    }
 }
