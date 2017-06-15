@@ -2,7 +2,11 @@ package apoco.sandbox;
 
 import android.graphics.Canvas;
 import android.graphics.Paint;
+
+import java.sql.Time;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.Timer;
 
 /**
  * Created by Romain on 12/06/2017.
@@ -17,6 +21,10 @@ public class Ship {
     private double rotation;
     private int len;            //Length of the ship
     private boolean isMoving;
+    private long lastFire = 0;
+    private int delayFire = 300;
+    private boolean isFiring = false;
+
     private ArrayList<Shot> shots;
 
     public Ship(int x, int y, int len){
@@ -72,14 +80,18 @@ public class Ship {
         this.turn(angle + (Math.PI / 2));
         this.edges();
 
-        ArrayList<Shot> tmp = new ArrayList<>();
+        if(isFiring){
+            this.fire();
+        }
+
+        ArrayList<Shot> shotsFar = new ArrayList<>();
         for(Shot s : shots){
             s.update();
             if(s.isOutEdges(CImageView.WIDTH_SCREEN, CImageView.HEIGHT_SCREEN)){
-                tmp.add(s);
+                shotsFar.add(s);
             }
         }
-        shots.removeAll(tmp);
+        shots.removeAll(shotsFar);
     }
 
     private void edges(){
@@ -123,7 +135,13 @@ public class Ship {
     }
 
     public void fire(){
-        shots.add(new Shot(pos.getX(), pos.getY(), this.angle));
+        Date d = new Date();
+        long t = d.getTime();
+
+        if(lastFire == 0 || t - lastFire >= delayFire) { // 1000 is the delay... Just checking how it works
+            shots.add(new Shot(pos.getX(), pos.getY(), this.angle));
+            lastFire = t;
+        }
     }
 
     public CVector2D getPos(){
@@ -135,5 +153,7 @@ public class Ship {
     }
 
     public ArrayList<Shot> getShots() { return shots;}
+
+    public void setFiring(boolean b){isFiring = b;}
 }
 

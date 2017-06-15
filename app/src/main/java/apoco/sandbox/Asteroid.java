@@ -37,7 +37,7 @@ public class Asteroid {
     public Asteroid(int x, int y, int Vx, int Vy, double angle, int lvl){
         pos = new CVector2D(x, y);
         velocity = new CVector2D(Vx, Vy);
-        velocity.mult(0.01f);
+        velocity.mult(0.009f);
 
         level = lvl;
         this.angle = angle;

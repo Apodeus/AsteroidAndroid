@@ -73,7 +73,10 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 if(event.getAction() == MotionEvent.ACTION_DOWN) {
-                    civ.getGame().getShip().fire();
+                    //civ.getGame().getShip().fire();
+                    civ.getGame().getShip().setFiring(true);
+                } else if (event.getAction() == MotionEvent.ACTION_UP) {
+                    civ.getGame().getShip().setFiring(false);
                 }
                 return true;
             }
