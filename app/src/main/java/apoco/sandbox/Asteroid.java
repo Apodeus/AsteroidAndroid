@@ -20,9 +20,9 @@ public class Asteroid {
         Random rand = new Random();
         int h = rand.nextInt()%2;
         if(h == 1)
-            h = CImageView.HEIGHT_SCREEN;
+            h = (4 * CImageView.HEIGHT_SCREEN / 5) + (rand.nextInt() % (CImageView.HEIGHT_SCREEN / 5));
         else
-            h = 0;
+            h = rand.nextInt() % (CImageView.HEIGHT_SCREEN / 5);
 
         pos = new CVector2D(rand.nextInt()%CImageView.WIDTH_SCREEN, h);
         angle = rand.nextDouble()%(2*Math.PI); //Generate a random angle between [0; 2PI]

@@ -3,10 +3,8 @@ package apoco.sandbox;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 
-import java.sql.Time;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.Timer;
 
 /**
  * Created by Romain on 12/06/2017.
@@ -16,11 +14,13 @@ public class Ship {
 
     private CVector2D pos;      //position of the ship
     private CVector2D velocity; // Velocity of the ship
+
     private float[] shape;
     private double angle;
     private double rotation;
     private int len;            //Length of the ship
     private boolean isMoving;
+
     private long lastFire = 0;
     private int delayFire = 300;
     private boolean isFiring = false;

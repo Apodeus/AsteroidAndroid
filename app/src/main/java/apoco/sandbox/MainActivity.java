@@ -13,6 +13,7 @@ import android.widget.Button;
 public class MainActivity extends AppCompatActivity {
 
     public CImageView civ;
+    private static boolean fingerDown = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,7 +52,8 @@ public class MainActivity extends AppCompatActivity {
                 } else if (event.getAction() == MotionEvent.ACTION_UP) {
                     civ.getGame().getShip().addAngle(0);
                 }
-                return true;
+
+                return false;
             }
         });
 
@@ -60,11 +62,26 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 if(event.getAction() == MotionEvent.ACTION_DOWN) {
+                    //System.out.println("forward");
                     civ.getGame().getShip().setMoving(true);
+                    fingerDown = true;
                 } else if (event.getAction() == MotionEvent.ACTION_UP) {
                     civ.getGame().getShip().setMoving(false);
+                    civ.getGame().getShip().addAngle(0);
+                    fingerDown = false;
+                } else if (event.getAction() == MotionEvent.ACTION_MOVE) {
+                    if ((event.getRawX() >= button_right.getX()) && (event.getRawX() < button_right.getX() + button_right.getWidth())
+                            && (event.getRawY() >= button_right.getY()) && (event.getRawY() < button_right.getY() + button_right.getHeight())) {
+                        //System.out.println("RIGHT AND FORWARD ");
+                        civ.getGame().getShip().addAngle(0.1f);
+                    } else if ((event.getRawX() >= button_left.getX()) && (event.getRawX() < button_left.getX() + button_left.getWidth())
+                            && (event.getRawY() >= button_left.getY()) && (event.getRawY() < button_left.getY() + button_left.getHeight())){
+                        civ.getGame().getShip().addAngle(-0.1f);
+                    } else {
+                        civ.getGame().getShip().addAngle(0);
+                    }
                 }
-                return true;
+                return false;
             }
         });
 
@@ -78,7 +95,7 @@ public class MainActivity extends AppCompatActivity {
                 } else if (event.getAction() == MotionEvent.ACTION_UP) {
                     civ.getGame().getShip().setFiring(false);
                 }
-                return true;
+                return false;
             }
         });
 

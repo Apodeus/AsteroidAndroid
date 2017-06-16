@@ -13,7 +13,7 @@ public class Game {
 
     private Ship myShip;
     private ArrayList<Asteroid> asteroids;
-    private final int maxAsteroids = 10;
+    private final int maxAsteroids = 6;
     private boolean gameOver = false;
     private int score = 0;
     private int width;
