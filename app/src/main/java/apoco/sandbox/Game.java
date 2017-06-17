@@ -37,16 +37,16 @@ public class Game {
         p.setARGB(255, 255, 255, 255);
         p.setTextAlign(Paint.Align.CENTER);
         p.setTextSize(width/40);
-        canvas.drawText(score + " points", width / 2, p.getTextSize(), p);
 
         // *-*-*-*-*-* Let's Check if the game is over *-*-*-*-*-*-*
-        /*
-        if(gameOver){
 
-            canvas.drawText("GAME OVER!", CImageView.WIDTH_SCREEN / 2, CImageView.HEIGH_SCREEN / 2, p);
+        if(gameOver){
+            canvas.drawText("GAME OVER !", CImageView.WIDTH_SCREEN / 2, CImageView.HEIGHT_SCREEN / 2, p);
+            canvas.drawText("Your Score : " + score, CImageView.WIDTH_SCREEN / 2, 3 * CImageView.HEIGHT_SCREEN / 4, p);
             return;
         }
-        */
+
+        canvas.drawText(score + " points", width / 2, p.getTextSize(), p);
 
         // *-*-*-*-*-* Generate a new wave of asteroids if there is no more asteroid *-*-*-*-*-*
         if(asteroids.size() == 0){
@@ -141,4 +141,6 @@ public class Game {
     public Ship getShip(){
         return myShip;
     }
+
+    public boolean isGameOver(){return gameOver;}
 }

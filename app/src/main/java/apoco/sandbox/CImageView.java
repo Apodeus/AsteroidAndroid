@@ -42,4 +42,6 @@ public class CImageView extends View {
     }
 
     public Game getGame(){return actualGame;}
+
+    public void tryAgain(){this.actualGame = new Game();}
 }

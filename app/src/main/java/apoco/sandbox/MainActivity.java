@@ -37,21 +37,23 @@ public class MainActivity extends AppCompatActivity {
         final Button button_forward = (Button) findViewById(R.id.button_forward);
         final Button button_fire = (Button) findViewById(R.id.button_fire);
 
+        final double rota = 0.06;
+
         // *-*-*-*-* Init behaviour of buttons *-*-*-*-*-
 
         button_right.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 if(event.getAction() == MotionEvent.ACTION_DOWN) {
-                    civ.getGame().getShip().addAngle(0.1f);
+                    civ.getGame().getShip().addAngle(rota);
                 } else if (event.getAction() == MotionEvent.ACTION_UP) {
                     civ.getGame().getShip().addAngle(0);
                 }else if((event.getAction() == MotionEvent.ACTION_MOVE)){
                     if ((event.getRawX() >= button_left.getX()) && (event.getRawX() < button_left.getX() + button_left.getWidth())
                             && (event.getRawY() >= button_left.getY()) && (event.getRawY() < button_left.getY() + button_left.getHeight())){
-                        civ.getGame().getShip().addAngle(-0.1f);
+                        civ.getGame().getShip().addAngle(-rota);
                     } else {
-                        civ.getGame().getShip().addAngle(0.1f);
+                        civ.getGame().getShip().addAngle(rota);
                     }
                 }
                 return true;
@@ -62,15 +64,15 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 if(event.getAction() == MotionEvent.ACTION_DOWN) {
-                    civ.getGame().getShip().addAngle(-0.1f);
+                    civ.getGame().getShip().addAngle(-rota);
                 } else if (event.getAction() == MotionEvent.ACTION_UP) {
                     civ.getGame().getShip().addAngle(0);
                 } else if((event.getAction() == MotionEvent.ACTION_MOVE)){
                     if ((event.getRawX() >= button_right.getX()) && (event.getRawX() < button_right.getX() + button_right.getWidth())
                             && (event.getRawY() >= button_right.getY()) && (event.getRawY() < button_right.getY() + button_right.getHeight())) {
-                        civ.getGame().getShip().addAngle(0.1f);
+                        civ.getGame().getShip().addAngle(rota);
                     } else {
-                        civ.getGame().getShip().addAngle(-0.1f);
+                        civ.getGame().getShip().addAngle(-rota);
                     }
                 }
 
@@ -93,10 +95,10 @@ public class MainActivity extends AppCompatActivity {
                     if ((event.getRawX() >= button_right.getX()) && (event.getRawX() < button_right.getX() + button_right.getWidth())
                             && (event.getRawY() >= button_right.getY()) && (event.getRawY() < button_right.getY() + button_right.getHeight())) {
                         //System.out.println("RIGHT AND FORWARD ");
-                        civ.getGame().getShip().addAngle(0.1f);
+                        civ.getGame().getShip().addAngle(rota);
                     } else if ((event.getRawX() >= button_left.getX()) && (event.getRawX() < button_left.getX() + button_left.getWidth())
                             && (event.getRawY() >= button_left.getY()) && (event.getRawY() < button_left.getY() + button_left.getHeight())){
-                        civ.getGame().getShip().addAngle(-0.1f);
+                        civ.getGame().getShip().addAngle(-rota);
                     } else {
                         civ.getGame().getShip().addAngle(0);
                     }
@@ -110,6 +112,10 @@ public class MainActivity extends AppCompatActivity {
             public boolean onTouch(View v, MotionEvent event) {
                 if(event.getAction() == MotionEvent.ACTION_DOWN) {
                     //civ.getGame().getShip().fire();
+                    if(civ.getGame().isGameOver()){
+                        civ.tryAgain();
+                        return true;
+                    }
                     civ.getGame().getShip().setFiring(true);
                 } else if (event.getAction() == MotionEvent.ACTION_UP) {
                     civ.getGame().getShip().setFiring(false);

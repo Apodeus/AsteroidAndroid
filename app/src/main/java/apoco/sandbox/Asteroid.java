@@ -31,13 +31,13 @@ public class Asteroid {
         int Vx = (int)(Math.cos(angle) * 180 / Math.PI);
         int Vy = (int)(Math.sin(angle) * 180 / Math.PI);
         velocity = new CVector2D(Vx, Vy);
-        velocity.mult(rand.nextFloat()%0.1f + 0.05f);
+        velocity.mult(rand.nextFloat()%0.1f + 0.02f);
     }
 
     public Asteroid(int x, int y, int Vx, int Vy, double angle, int lvl){
         pos = new CVector2D(x, y);
         velocity = new CVector2D(Vx, Vy);
-        velocity.mult(0.009f);
+        velocity.mult(0.005f);
 
         level = lvl;
         this.angle = angle;

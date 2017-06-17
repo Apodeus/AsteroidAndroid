@@ -22,7 +22,7 @@ public class Ship {
     private boolean isMoving;
 
     private long lastFire = 0;
-    private int delayFire = 300;
+    private int delayFire = 200;
     private boolean isFiring = false;
 
     private ArrayList<Shot> shots;
@@ -64,7 +64,7 @@ public class Ship {
             force.setY((int)(Math.sin(this.angle) * (180 / Math.PI)));
 
             velocity.add(force);
-            velocity.mult(0.2);
+            velocity.mult(0.15);
         }
 
         pos.add(velocity);
@@ -138,7 +138,7 @@ public class Ship {
         Date d = new Date();
         long t = d.getTime();
 
-        if(lastFire == 0 || t - lastFire >= delayFire) { // 1000 is the delay... Just checking how it works
+        if(t - lastFire >= delayFire || lastFire == 0) { // 1000 is the delay... Just checking how it works
             shots.add(new Shot(pos.getX(), pos.getY(), this.angle));
             lastFire = t;
         }
