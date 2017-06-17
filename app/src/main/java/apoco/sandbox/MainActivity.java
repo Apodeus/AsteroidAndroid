@@ -28,9 +28,17 @@ public class MainActivity extends AppCompatActivity {
         getWindow().getDecorView().setBackgroundColor(Color.BLACK);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
 
+        // *-*-*-* Init Custom ImageView *-*-*-*-*
         civ = (CImageView) findViewById(R.id.cImageView);
 
+        // -*-*-*-*-*-* Init Buttons *-*-*-*-*-*
         final Button button_right = (Button) findViewById(R.id.button_rota_right);
+        final Button button_left = (Button) findViewById(R.id.button_rota_left);
+        final Button button_forward = (Button) findViewById(R.id.button_forward);
+        final Button button_fire = (Button) findViewById(R.id.button_fire);
+
+        // *-*-*-*-* Init behaviour of buttons *-*-*-*-*-
+
         button_right.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
@@ -38,12 +46,18 @@ public class MainActivity extends AppCompatActivity {
                     civ.getGame().getShip().addAngle(0.1f);
                 } else if (event.getAction() == MotionEvent.ACTION_UP) {
                     civ.getGame().getShip().addAngle(0);
+                }else if((event.getAction() == MotionEvent.ACTION_MOVE)){
+                    if ((event.getRawX() >= button_left.getX()) && (event.getRawX() < button_left.getX() + button_left.getWidth())
+                            && (event.getRawY() >= button_left.getY()) && (event.getRawY() < button_left.getY() + button_left.getHeight())){
+                        civ.getGame().getShip().addAngle(-0.1f);
+                    } else {
+                        civ.getGame().getShip().addAngle(0.1f);
+                    }
                 }
                 return true;
             }
         });
 
-        final Button button_left = (Button) findViewById(R.id.button_rota_left);
         button_left.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
@@ -51,13 +65,19 @@ public class MainActivity extends AppCompatActivity {
                     civ.getGame().getShip().addAngle(-0.1f);
                 } else if (event.getAction() == MotionEvent.ACTION_UP) {
                     civ.getGame().getShip().addAngle(0);
+                } else if((event.getAction() == MotionEvent.ACTION_MOVE)){
+                    if ((event.getRawX() >= button_right.getX()) && (event.getRawX() < button_right.getX() + button_right.getWidth())
+                            && (event.getRawY() >= button_right.getY()) && (event.getRawY() < button_right.getY() + button_right.getHeight())) {
+                        civ.getGame().getShip().addAngle(0.1f);
+                    } else {
+                        civ.getGame().getShip().addAngle(-0.1f);
+                    }
                 }
 
-                return false;
+                return true;
             }
         });
 
-        final Button button_forward = (Button) findViewById(R.id.button_forward);
         button_forward.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
@@ -85,7 +105,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        final Button button_fire = (Button) findViewById(R.id.button_fire);
         button_fire.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
